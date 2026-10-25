@@ -1,0 +1,40 @@
+name: tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.9", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+          pip install -e .
+
+      - name: Run the test suite
+        env:
+          MPLBACKEND: Agg
+        run: pytest --cov=hyperspectral --cov-report=term-missing
+
+      - name: Smoke-test the command line
+        env:
+          MPLBACKEND: Agg
+        run: python -m hyperspectral --data data/Indian_Pine.mat --samples 100 --outdir results --quiet

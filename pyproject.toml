@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hyperspectral"
+version = "1.0.0"
+description = "Hyperspectral image processing in Python: sample selection, band selection, Maximum Likelihood Classification and K-means clustering."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [{ name = "Mohsen Ghamary Asl" }]
+keywords = [
+    "hyperspectral",
+    "remote-sensing",
+    "image-classification",
+    "maximum-likelihood",
+    "k-means",
+    "band-selection",
+    "indian-pines",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+dependencies = [
+    "numpy>=1.21",
+    "scipy>=1.7",
+    "matplotlib>=3.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "flake8>=6.0"]
+
+[project.urls]
+Homepage = "https://github.com/MohsenGhamaryAsl/Hyperspectral"
+Issues = "https://github.com/MohsenGhamaryAsl/Hyperspectral/issues"
+
+[project.scripts]
+hyperspectral-cli = "hyperspectral.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["hyperspectral*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["hyperspectral"]
+omit = ["hyperspectral/cli.py"]

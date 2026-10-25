@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below."
+title: "Hyperspectral: hyperspectral image processing in Python"
+abstract: >-
+  Sample selection (by number or percentage), Maximum Tangent Discrimination
+  band selection, Maximum Likelihood Classification, K-means clustering and
+  accuracy assessment (OA, AA, kappa) for hyperspectral remote-sensing imagery.
+version: 1.0.0
+date-released: "2026-10-25"
+license: MIT
+repository-code: "https://github.com/MohsenGhamaryAsl/Hyperspectral"
+authors:
+  - family-names: "Ghamary Asl"
+    given-names: "Mohsen"
+keywords:
+  - hyperspectral
+  - remote sensing
+  - image classification
+  - band selection
